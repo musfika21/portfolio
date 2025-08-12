@@ -37,7 +37,7 @@ const ProjectDetails = () => {
       <img
         src={project.image}
         alt={project.name}
-        className="w-full h-64 object-cover rounded-lg mb-8 shadow-lg"
+        className="w-full h-full object-cover rounded-lg mb-8 shadow-lg"
       />
 
       <div className="mb-6">
@@ -80,20 +80,6 @@ const ProjectDetails = () => {
         >
           GitHub Repo
         </a>
-      </div>
-
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2 text-primary">
-          Challenges Faced
-        </h2>
-        <p className="text-gray-300">{project.challenges}</p>
-      </div>
-
-      <div>
-        <h2 className="text-2xl font-semibold mb-2 text-primary">
-          Potential Improvements & Future Plans
-        </h2>
-        <p className="text-gray-300">{project.improvements}</p>
       </div>
 
       <div className="mt-12">

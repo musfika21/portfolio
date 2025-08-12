@@ -115,7 +115,7 @@ const Skills = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="skills" className="min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#9CAFAA]/5 rounded-full blur-3xl animate-pulse"></div>
@@ -147,29 +147,6 @@ const Skills = () => {
               icon={category.icon}
               index={index}
             />
-          ))}
-        </div>
-
-        {/* Stats Section */}
-        <div className={`mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 transform transition-all duration-1000 ${
-          isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`} style={{transitionDelay: '800ms'}}>
-          {[
-            { number: skills.frontend.length, label: "Frontend Technologies" },
-            { number: skills.backend.length, label: "Backend Technologies" },
-            { number: skills.tools.length, label: "Development Tools" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center group cursor-pointer">
-              <div className="relative">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-zinc-900 border border-zinc-800 shadow-lg mb-4 group-hover:scale-110 group-hover:border-[#9CAFAA]/50 group-hover:bg-[#9CAFAA]/10 transition-all duration-300">
-                  <span className="text-2xl font-bold text-[#9CAFAA]">{stat.number}</span>
-                </div>
-                <div className="absolute inset-0 rounded-2xl bg-[#9CAFAA]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-              </div>
-              <p className="text-gray-400 group-hover:text-[#9CAFAA] transition-colors duration-300 font-medium">
-                {stat.label}
-              </p>
-            </div>
           ))}
         </div>
 

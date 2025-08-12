@@ -24,8 +24,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-md shadow-lg transition-all duration-300">
-      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-md shadow-lg transition-all duration-300 border-b-[1px] border-[#9ACFAA]">
+      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-5">
         {/* Logo */}
         <Link
           to="/"

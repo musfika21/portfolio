@@ -19,49 +19,47 @@ export const education = [
     institution: "Z. H. Skider University of Science and Technology",
     year: "2023 - Present",
   },
+  {
+    degree: "HSC",
+    institution: "Narayanganj Government Mohila College",
+    year: "2020 - 2022",
+  },
+  {
+    degree: "SSC",
+    institution: "Imperial Ideal School and College",
+    year: "2018 - 2020",
+  }
 ];
 
 export const projects = [
   {
     id: 1,
-    name: "Project One",
-    image: "/project1.jpg",
-    techStack: ["React.js", "Tailwind CSS", "Node.js"],
+    name: "Plant Care Tracker",
+    image: "https://i.ibb.co.com/R4P6hqK4/Screenshot-2025-08-12-175510.png",
+    techStack: ["React.js", "Tailwind CSS", "Java Script", "Node.js", "Express.js", "MongoDB"],
     description:
-      "A short description of Project One. This will be replaced with your real project description.",
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/yourusername/project-one",
-    challenges:
-      "Describe key challenges you faced while building this project.",
-    improvements:
-      "List possible improvements or future plans for the project.",
+      "Plant Care Tracker, a full-stack, mobile-responsive web application designed to help users monitor and manage the care of their indoor and outdoor plants.",
+    liveLink: "https://plant-care-tracker-musfika21.netlify.app/",
+    githubLink: "https://github.com/musfika21/plant-care-tracker-client"
   },
   {
     id: 2,
-    name: "Project Two",
-    image: "/project2.jpg",
-    techStack: ["React.js", "Firebase", "Tailwind CSS"],
+    name: "Trade Nest",
+    image: "https://i.ibb.co.com/ymmj6JKR/Screenshot-2025-08-12-191443.png",
+    techStack: ["React.js", "Tailwind CSS", "Java Script", "Node.js", "Express.js", "MongoDB", "JWT"],
     description:
-      "A short description of Project Two. This will be replaced with your real project description.",
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/yourusername/project-two",
-    challenges:
-      "Describe key challenges you faced while building this project.",
-    improvements:
-      "List possible improvements or future plans for the project.",
+      "TradeNest, a B2B wholesale marketplace built with React, Tailwind CSS, and Firebase Authentication. This platform allows buyers and sellers to connect seamlessly, manage their products, and conduct secure transactions.",
+    liveLink: "https://trade-nest01.web.app/",
+    githubLink: "https://github.com/musfika21/tradeNest-client-side",
   },
   {
     id: 3,
-    name: "Project Three",
-    image: "/project3.jpg",
-    techStack: ["MERN Stack", "JWT", "Stripe"],
+    name: "Blood Bond",
+    image: "https://i.ibb.co.com/MD5PPj6F/Screenshot-2025-08-12-191822.png",
+    techStack: ["React.js", "Tailwind CSS", "Java Script", "Node.js", "Express.js", "MongoDB"],
     description:
-      "A short description of Project Three. This will be replaced with your real project description.",
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/yourusername/project-three",
-    challenges:
-      "Describe key challenges you faced while building this project.",
-    improvements:
-      "List possible improvements or future plans for the project.",
+      "Blood Bond is a dedicated blood donation platform committed to building a compassionate and responsive community. Our mission is to bridge the gap between donors and patients in need, ensuring timely and life-saving support.",
+    liveLink: "https://live-link-f0539.web.app/",
+    githubLink: "https://github.com/musfika21/blood-bond-client-site",
   },
 ];
