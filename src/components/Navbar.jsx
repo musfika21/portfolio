@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router"; // Corrected to react-router-dom for standard usage
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -10,26 +10,38 @@ const Navbar = () => {
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Education", href: "#education" },
-    { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const handleScroll = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false); // Close mobile menu if open
+  };
+
   return (
-    <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-md shadow-md">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+    <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-md shadow-lg transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Logo */}
-        <Link to="/" className="text-primary font-bold text-xl">
+        <Link
+          to="/"
+          className="text-primary font-bold text-xl lg:text-2xl tracking-wide hover:opacity-90 transition-opacity duration-300"
+        >
           MyPortfolio
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-gray-300">
+        <ul className="hidden md:flex space-x-6 lg:space-x-8 text-gray-300 text-sm lg:text-base font-medium">
           {navLinks.map((link) => (
             <li key={link.name}>
               <a
                 href={link.href}
-                className="hover:text-primary transition duration-300"
+                onClick={(e) => handleScroll(e, link.href)}
+                className="relative px-2 py-1 hover:text-primary transition duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
               >
                 {link.name}
               </a>
@@ -39,25 +51,24 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <FaTimes className="text-gray-300" size={24} />
-            ) : (
-              <FaBars className="text-gray-300" size={24} />
-            )}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-gray-300 hover:text-primary transition duration-300"
+          >
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/95 px-4 py-6 space-y-4">
+        <div className="md:hidden bg-black/95 px-4 sm:px-6 py-6 space-y-4 animate-slide-down">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="block text-gray-300 hover:text-primary"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleScroll(e, link.href)}
+              className="block text-gray-300 hover:text-primary text-base font-medium transition duration-300"
             >
               {link.name}
             </a>
