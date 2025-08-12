@@ -19,24 +19,25 @@ const Contact = () => {
       </motion.h2>
 
       <motion.div
-        className="flex flex-col md:flex-row items-center md:items-start gap-8"
+        className="flex flex-col md:flex-row items-center gap-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
         {/* Lottie Animation */}
-        <div className="flex justify-center md:w-1/3">
+        <div className="flex justify-center w-full md:w-1/2">
           <Player
             autoplay
             loop
             src="/dm.json"
-            style={{ height: "300px", width: "300px" }}
+            className="h-40 w-40 sm:h-48 sm:w-48 md:h-65 md:w-65 lg:h-80 lg:w-80 xl:h-90 xl:w-90"
           />
         </div>
 
+
         {/* Contact Info & Form */}
-        <div className="md:w-2/3 w-full space-y-6">
+        <div className="w-full md:w-1/2 space-y-6">
           {/* Contact Info */}
           <div className="text-center md:text-left space-y-4">
             <p>
@@ -50,7 +51,10 @@ const Contact = () => {
             </p>
             <p>
               <strong>Phone:</strong>{" "}
-              <a href="tel:+8801777-378806" className="text-primary hover:underline">
+              <a
+                href="tel:+8801777-378806"
+                className="text-primary hover:underline"
+              >
                 +8801777-378806
               </a>
             </p>
@@ -106,6 +110,7 @@ const Contact = () => {
           </form>
         </div>
       </motion.div>
+
     </section>
   );
 };
