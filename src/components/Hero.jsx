@@ -19,7 +19,7 @@ const Hero = () => {
     >
       {/* Profile Image */}
       <motion.img
-        src="../../src/assets/logo.png"
+        src="/logo.png"
         alt="Profile"
         className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full object-cover border-4 border-primary shadow-lg"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -38,8 +38,8 @@ const Hero = () => {
           <TypeWriterEffect
             textStyle={{
               fontWeight: "bold",
-              color: "#00b4d8", // Assuming primary is a cyan-like color
-              fontSize: "clamp(1.875rem, 5vw, 2.25rem)", // Responsive font size
+              color: "#00b4d8",
+              fontSize: "clamp(1.875rem, 5vw, 2.25rem)",
               lineHeight: "1.2",
             }}
             startDelay={100}

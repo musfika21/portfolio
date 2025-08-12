@@ -3,7 +3,7 @@ import { education } from "../data";
 import { motion } from "framer-motion";
 
 const Education = () => {
-  if (!education.length) return null; // Skip section if no data
+  if (!education.length) return null;
 
   return (
     <section id="education" className="py-16 bg-black px-6 md:px-20">
@@ -17,7 +17,7 @@ const Education = () => {
         Education
       </motion.h2>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="space-y-8">
         {education.map((edu, index) => (
           <motion.div
             key={index}

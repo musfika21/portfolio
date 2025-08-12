@@ -1,33 +1,23 @@
 // All portfolio data in one place
 
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/yourusername", icon: "FaGithub" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/yourusername", icon: "FaLinkedin" },
-  { name: "Twitter", url: "https://twitter.com/yourusername", icon: "FaTwitter" },
-  { name: "Facebook", url: "https://facebook.com/yourusername", icon: "FaFacebook" },
+  { name: "GitHub", url: "https://github.com/musfika21", icon: "FaGithub" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/musfika-iqfat21/", icon: "FaLinkedin" },
+  { name: "Twitter", url: "https://x.com/Musfika_Iqfat", icon: "FaTwitter" },
+  { name: "Facebook", url: "https://www.facebook.com/musfikaiqfatmomo21", icon: "FaFacebook" },
 ];
 
 export const skills = {
-  frontend: ["HTML", "CSS", "JavaScript", "React.js", "Tailwind CSS"],
+  frontend: ["HTML", "CSS", "JavaScript", "React.js", "Tailwind CSS", "Next.js"],
   backend: ["Node.js", "Express.js", "MongoDB"],
-  tools: ["Git", "GitHub", "VS Code", "Postman"],
+  tools: ["Git", "GitHub", "VS Code"],
 };
 
 export const education = [
   {
     degree: "B.Sc. in Computer Science & Engineering",
-    institution: "Your University Name",
-    year: "2022 - Present",
-  },
-];
-
-export const experience = [
-  {
-    title: "Frontend Web Developer Intern",
-    company: "ABC Company",
-    year: "Jan 2024 - Apr 2024",
-    details:
-      "Worked on building responsive web applications using React.js and Tailwind CSS.",
+    institution: "Z. H. Skider University of Science and Technology",
+    year: "2023 - Present",
   },
 ];
 
