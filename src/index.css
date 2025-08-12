@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+body {
+  @apply bg-black text-gray-200;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  @apply text-[#9CAFAA] hover:underline;
+}
