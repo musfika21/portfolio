@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Code2, Server, Wrench, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 // Mock skills data - replace with your actual data import
 const skills = {
@@ -19,11 +21,10 @@ const SkillCard = ({ skill, index, delay }) => {
   }, [delay]);
 
   return (
-    <div 
-      className={`group relative overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 p-4 transition-all duration-500 hover:scale-105 hover:shadow-lg hover:border-[#9CAFAA]/50 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-      }`}
-      style={{ 
+    <div
+      className={`group relative overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 p-4 transition-all duration-500 hover:scale-105 hover:shadow-lg hover:border-[#9CAFAA]/50 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}
+      style={{
         transitionDelay: isVisible ? '0ms' : `${delay}ms`,
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}
@@ -45,14 +46,13 @@ const SkillCategory = ({ title, skillList, icon: Icon, index }) => {
 
   return (
     <div className="w-full">
-      <div 
-        className={`mb-8 transform transition-all duration-700 ${
-          index === 0 ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-100'
-        }`}
+      <div
+        className={`mb-8 transform transition-all duration-700 ${index === 0 ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-100'
+          }`}
         style={{ transitionDelay: `${index * 200}ms` }}
       >
         {/* Category Header */}
-        <div 
+        <div
           className="flex items-center justify-between mb-6 cursor-pointer group"
           onClick={() => setIsExpanded(!isExpanded)}
         >
@@ -70,10 +70,9 @@ const SkillCategory = ({ title, skillList, icon: Icon, index }) => {
         </div>
 
         {/* Skills Grid */}
-        <div 
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-all duration-500 overflow-hidden ${
-            isExpanded ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
-          }`}
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-all duration-500 overflow-hidden ${isExpanded ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
+            }`}
         >
           {skillList.map((skill, skillIndex) => (
             <SkillCard
@@ -103,7 +102,7 @@ const Skills = () => {
       icon: Code2
     },
     {
-      title: "Backend", 
+      title: "Backend",
       skills: skills.backend,
       icon: Server
     },
@@ -119,18 +118,23 @@ const Skills = () => {
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#9CAFAA]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#9CAFAA]/3 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#9CAFAA]/2 rounded-full blur-3xl animate-pulse" style={{animationDelay: '6s'}}></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#9CAFAA]/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#9CAFAA]/2 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${
-          isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-            My <span className="text-[#9CAFAA]">Skills</span>
-          </h1>
+        <div className={`text-center mb-16 transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
+          <motion.h2
+            className="text-3xl font-bold text-primary mb-10 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            My Skills
+          </motion.h2>
           <div className="w-24 h-1 bg-[#9CAFAA] mx-auto rounded-full"></div>
           <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
             A comprehensive overview of my technical expertise and the tools I use to bring ideas to life
@@ -152,8 +156,8 @@ const Skills = () => {
 
         {/* Decorative Elements */}
         <div className="absolute top-20 left-10 w-2 h-2 bg-[#9CAFAA] rounded-full animate-ping"></div>
-        <div className="absolute bottom-20 right-10 w-3 h-3 bg-[#9CAFAA]/60 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-5 w-1 h-1 bg-[#9CAFAA] rounded-full animate-ping" style={{animationDelay: '4s'}}></div>
+        <div className="absolute bottom-20 right-10 w-3 h-3 bg-[#9CAFAA]/60 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-5 w-1 h-1 bg-[#9CAFAA] rounded-full animate-ping" style={{ animationDelay: '4s' }}></div>
       </div>
     </section>
   );
