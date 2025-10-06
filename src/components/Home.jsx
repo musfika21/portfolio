@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-16 max-w-11/12 mx-auto">
+      <main className="">
         <Hero />
         <About />
         <Skills />
