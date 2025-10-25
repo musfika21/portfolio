@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaFacebook, FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
@@ -6,10 +6,10 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 // Custom useInView hook
 const useInView = (options = {}) => {
-  const [inView, setInView] = React.useState(false);
+  const [inView, setInView] = useState(false);
   const ref = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setInView(true);
@@ -39,7 +39,7 @@ const useInView = (options = {}) => {
 
 const socialLinks = [
   { icon: "FaGithub", url: "https://github.com/musfika21" },
-  { icon: "FaLinkedin", url: "https://www.linkedin.com/in/musfika-iqfat21/" },
+  { icon: "FaLinkedin", url: "https://www.linkedin.com/in/musfika-iqfat21" },
   { icon: "FaSquareXTwitter", url: "https://x.com/Musfika_Iqfat21" },
   { icon: "FaFacebook", url: "https://www.facebook.com/musfikaiqfatmomo21" },
 ];
@@ -58,14 +58,14 @@ const Hero = () => {
     triggerOnce: true,
   });
 
-  const [currentRole, setCurrentRole] = React.useState(0);
+  const [currentRole, setCurrentRole] = useState(0);
   const roles = [
     "Full Stack Developer",
     "MERN Stack Developer",
     "Front End Developer",
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }, 3000);
@@ -99,7 +99,7 @@ const Hero = () => {
     <section
       id="home"
       ref={ref}
-      className="min-h-screen flex items-center justify-between gap-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 pb-2 pt-33 md:py-45 lg:py-25 xl:py-30"
+      className="min-h-screen flex items-center justify-center pt-24 xs:pt-28 sm:pt-32 md:pt-40 lg:pt-45 xl:pt-50 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 pb-8 xs:pb-12 sm:pb-16 md:pb-20 lg:pb-24"
       style={{
         backgroundColor: colors.bg.primary,
         position: 'relative',
@@ -114,7 +114,7 @@ const Hero = () => {
         transition={{ duration: 1.5 }}
       >
         <motion.div
-          className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full blur-3xl"
+          className="absolute top-10 left-5 w-24 h-24 sm:top-20 sm:left-10 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full blur-3xl"
           style={{ backgroundColor: colors.accent.primary }}
           animate={{
             scale: [1, 1.2, 1],
@@ -127,7 +127,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full blur-3xl"
+          className="absolute bottom-10 right-5 w-32 h-32 sm:bottom-20 sm:right-10 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full blur-3xl"
           style={{ backgroundColor: colors.accent.secondary }}
           animate={{
             scale: [1, 1.3, 1],
@@ -147,14 +147,14 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative w-10/12 max-w-screen-xl z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-13 md:gap-20 lg:gap-30 xl:gap-40 items-center"
+        className="relative w-full max-w-7xl mx-auto z-10 flex flex-col-reverse lg:flex-row justify-center items-center gap-6 xs:gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-40"
       >
         {/* Left Side - Profile Image with Decorative Elements */}
         <motion.div
           variants={itemVariants}
-          className="flex justify-center lg:justify-end order-1 lg:order-1"
+          className="flex justify-center items-center order-2 lg:order-1 w-full lg:w-auto flex-shrink-0 xl:pl-20"
         >
-          <div className="relative group">
+          <div className="relative">
             {/* Decorative Rings */}
             <motion.div
               className="absolute inset-0 rounded-full"
@@ -172,18 +172,18 @@ const Hero = () => {
               }}
             >
               <div
-                className="absolute top-0 right-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full"
+                className="absolute top-0 right-0 w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full"
                 style={{ backgroundColor: colors.accent.primary }}
               />
               <div
-                className="absolute bottom-0 left-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full"
+                className="absolute bottom-0 left-0 w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full"
                 style={{ backgroundColor: colors.accent.secondary }}
               />
             </motion.div>
 
             {/* Outer Glow Ring */}
             <motion.div
-              className="absolute -inset-4 sm:-inset-6 md:-inset-8 rounded-full"
+              className="absolute -inset-2.5 xs:-inset-3 sm:-inset-4 md:-inset-6 lg:-inset-8 rounded-full"
               style={{
                 background: `radial-gradient(circle, ${colors.accent.primary}20, transparent)`,
               }}
@@ -200,7 +200,7 @@ const Hero = () => {
 
             {/* Profile Image Container */}
             <motion.div
-              className="relative rounded-full p-1 sm:p-1.5 md:p-2"
+              className="relative rounded-full p-0.5 xs:p-1 sm:p-1.5 md:p-2"
               style={{
                 background: `linear-gradient(135deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
                 boxShadow: `0 20px 60px ${colors.accent.primary}40`,
@@ -209,15 +209,15 @@ const Hero = () => {
               transition={{ duration: 0.3 }}
             >
               <div
-                className="rounded-full p-2 sm:p-3 md:p-4"
+                className="rounded-full p-1.5 xs:p-2 sm:p-3 md:p-4"
                 style={{ backgroundColor: colors.bg.primary }}
               >
                 <img
                   src="/profile.png"
                   alt="Profile"
-                  className="w-48 h-48 xs:w-52 xs:h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full object-cover"
+                  className="w-36 h-36 xs:w-40 xs:h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96 rounded-full object-cover"
                   style={{
-                    border: `4px solid ${colors.bg.card}`,
+                    border: `3px solid ${colors.bg.card}`,
                   }}
                 />
               </div>
@@ -225,7 +225,7 @@ const Hero = () => {
 
             {/* Floating Badge */}
             <motion.div
-              className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 md:-bottom-6 md:-right-6 px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full shadow-2xl"
+              className="absolute -bottom-0.5 -right-0.5 xs:-bottom-1 xs:-right-1 sm:-bottom-2 sm:-right-2 md:-bottom-3 md:-right-3 lg:-bottom-4 lg:-right-4 xl:-bottom-6 xl:-right-6 px-2 py-0.5 xs:px-2.5 xs:py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-6 xl:py-3 rounded-full shadow-2xl"
               style={{
                 backgroundColor: colors.bg.card,
                 border: `2px solid ${colors.accent.border}`,
@@ -235,7 +235,7 @@ const Hero = () => {
               transition={{ delay: 1, type: "spring", stiffness: 200 }}
             >
               <span
-                className="font-bold text-xs sm:text-sm md:text-base"
+                className="font-bold text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base whitespace-nowrap"
                 style={{ color: colors.accent.primary }}
               >
                 ✨ Available
@@ -247,12 +247,11 @@ const Hero = () => {
         {/* Right Side - Text Content */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-2 space-y-4 sm:space-y-5 md:space-y-6"
+          className="flex flex-col items-center lg:items-start text-center lg:text-left order-1 lg:order-2 space-y-2.5 xs:space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 w-full lg:flex-1 xl:pl-10"
         >
-
           {/* Name */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold leading-tight"
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight"
             style={{ color: colors.text.primary }}
             variants={itemVariants}
           >
@@ -268,7 +267,7 @@ const Hero = () => {
 
           {/* Animated Role */}
           <motion.div
-            className="h-10 sm:h-12 md:h-14 lg:h-18 w-full flex items-center"
+            className="h-7 xs:h-8 sm:h-9 md:h-10 lg:h-12 xl:h-14 2xl:h-16 w-full flex items-center justify-center lg:justify-start"
             variants={itemVariants}
           >
             <motion.h2
@@ -276,7 +275,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="text-xl sm:text-2xl md:text-3xl xl:text-5xl font-bold"
+              className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold"
               style={{
                 color: colors.accent.primary,
                 textShadow: `0 0 30px ${colors.accent.primary}60`,
@@ -286,26 +285,15 @@ const Hero = () => {
             </motion.h2>
           </motion.div>
 
-          {/* Description */}
-          <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl max-w-xl leading-relaxed"
-            style={{ color: colors.text.secondary }}
-            variants={itemVariants}
-          >
-            I love building modern, responsive, and user-friendly web
-            applications. Passionate about clean code, beautiful UI, and smooth
-            UX that delivers exceptional digital experiences.
-          </motion.p>
-
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row gap-2.5 xs:gap-3 sm:gap-4 w-full sm:w-auto"
             variants={itemVariants}
           >
             <motion.a
               href="/Musfika Iqfat.pdf"
               download
-              className="group relative px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-sm sm:text-base md:text-lg overflow-hidden transition-all duration-300"
+              className="group relative px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 lg:px-8 lg:py-4 rounded-xl font-semibold text-xs xs:text-sm sm:text-base md:text-lg overflow-hidden transition-all duration-300"
               style={{
                 backgroundColor: colors.bg.card,
                 color: colors.text.primary,
@@ -316,7 +304,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
-                <FaDownload />
+                <FaDownload className="text-xs xs:text-sm sm:text-base" />
                 Download Resume
               </span>
               <motion.div
@@ -329,7 +317,7 @@ const Hero = () => {
 
             <motion.a
               href="#contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-sm sm:text-base md:text-lg transition-all duration-300"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 lg:px-8 lg:py-4 rounded-xl font-semibold text-xs xs:text-sm sm:text-base md:text-lg transition-all duration-300"
               style={{
                 backgroundColor: 'transparent',
                 color: colors.accent.primary,
@@ -348,7 +336,7 @@ const Hero = () => {
 
           {/* Social Links */}
           <motion.div
-            className="flex gap-3 sm:gap-4 pt-4"
+            className="flex gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 pt-1.5 xs:pt-2 sm:pt-3 md:pt-4"
             variants={itemVariants}
           >
             {socialLinks.map((link, index) => {
@@ -359,7 +347,7 @@ const Hero = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full transition-all duration-300"
+                  className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-13 lg:h-13 xl:w-14 xl:h-14 flex items-center justify-center rounded-full transition-all duration-300"
                   style={{
                     backgroundColor: colors.bg.card,
                     color: colors.text.secondary,
@@ -377,13 +365,12 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
-                  <Icon className="text-lg sm:text-xl md:text-2xl" />
+                  <Icon className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl" />
                 </motion.a>
               );
             })}
           </motion.div>
         </motion.div>
-
       </motion.div>
     </section>
   );

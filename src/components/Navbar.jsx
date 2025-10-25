@@ -56,7 +56,7 @@ const Navbar = () => {
     <>
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-0.5 sm:h-1 z-[60] origin-left"
         style={{
           background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
           scaleX: scrollProgress / 100,
@@ -68,12 +68,12 @@ const Navbar = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
-        className="fixed w-full z-50 pt-2 px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4"
+        className="fixed w-full z-50 pt-1.5 px-2 xs:pt-2 xs:px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4"
         style={{ top: '0.1rem' }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full xs:w-11/12 mx-auto max-w-7xl">
           <div
-            className="relative rounded-xl sm:rounded-2xl shadow-2xl backdrop-blur-xl transition-all duration-500"
+            className="relative rounded-lg xs:rounded-xl sm:rounded-2xl shadow-2xl backdrop-blur-xl transition-all duration-300"
             style={{
               backgroundColor: isDark
                 ? 'rgba(76, 91, 108, 0.7)'
@@ -84,11 +84,11 @@ const Navbar = () => {
                 : `0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px ${colors.accent.border}30`,
             }}
           >
-            <div className="flex justify-between items-center px-3 py-3 sm:px-4 sm:py-3 md:px-6 md:py-4">
+            <div className="flex justify-between items-center px-2.5 py-2.5 xs:px-3 xs:py-3 sm:px-4 sm:py-3 md:px-6 md:py-4">
               {/* Logo Container - Elevated */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="relative rounded-lg sm:rounded-xl cursor-pointer"
+                className="relative rounded-md xs:rounded-lg sm:rounded-xl cursor-pointer p-1 xs:p-1.5 sm:p-2"
                 style={{
                   backgroundColor: colors.bg.card,
                   boxShadow: `0 4px 12px ${colors.accent.primary}40`,
@@ -97,18 +97,22 @@ const Navbar = () => {
                 <a
                   href="#home"
                   onClick={(e) => handleNavClick(e, '#home')}
-                  className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl tracking-tight relative"
+                  className="font-bold text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl tracking-tight relative flex items-center"
                   style={{
                     color: colors.text.primary,
                     textShadow: `0 0 20px ${colors.accent.primary}60`
                   }}
                 >
-                  <img src="./logo.png" className="w-10" />
+                  <img 
+                    src="./logo.png" 
+                    className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 object-contain" 
+                    alt="Logo"
+                  />
                 </a>
               </motion.div>
 
               {/* Desktop Menu - Layered Cards */}
-              <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
+              <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-2">
                 {navLinks.map((link, index) => {
                   const isActive = activeSection === link.href.slice(1);
                   return (
@@ -123,7 +127,7 @@ const Navbar = () => {
                         onClick={(e) => handleNavClick(e, link.href)}
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="relative px-3 py-2 xl:px-5 xl:py-2.5 rounded-lg font-medium text-xs xl:text-sm transition-all duration-300 block"
+                        className="relative px-2.5 py-1.5 xl:px-4 xl:py-2 2xl:px-5 2xl:py-2.5 rounded-lg font-medium text-xs xl:text-sm 2xl:text-base transition-all duration-300 block whitespace-nowrap"
                         style={{
                           color: isActive ? colors.text.primary : colors.text.secondary,
                           backgroundColor: isActive ? colors.bg.secondary : 'transparent',
@@ -162,13 +166,13 @@ const Navbar = () => {
               </ul>
 
               {/* Theme Toggle & Mobile Menu */}
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
                 {/* Glowing Theme Toggle Orb */}
                 <motion.button
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleTheme}
-                  className="relative p-2 rounded-full transition-all duration-500 cursor-pointer"
+                  className="relative p-1.5 xs:p-2 sm:p-2.5 rounded-full transition-all duration-300 cursor-pointer"
                   style={{
                     backgroundColor: colors.bg.card,
                     boxShadow: isDark
@@ -184,9 +188,9 @@ const Navbar = () => {
                     transition={{ duration: 0.5 }}
                   >
                     {isDark ? (
-                      <FaSun className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
+                      <FaSun className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
                     ) : (
-                      <FaMoon className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
+                      <FaMoon className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
                     )}
                   </motion.div>
 
@@ -212,7 +216,7 @@ const Navbar = () => {
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(!isOpen)}
-                  className="lg:hidden p-2 rounded-lg transition-all duration-300"
+                  className="lg:hidden p-1.5 xs:p-2 sm:p-2.5 rounded-lg transition-all duration-300"
                   style={{
                     backgroundColor: colors.bg.card,
                     color: colors.text.primary,
@@ -224,9 +228,9 @@ const Navbar = () => {
                     transition={{ duration: 0.3 }}
                   >
                     {isOpen ? (
-                      <FaTimes className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                      <FaTimes className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     ) : (
-                      <FaBars className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                      <FaBars className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     )}
                   </motion.div>
                 </motion.button>
@@ -241,10 +245,10 @@ const Navbar = () => {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="lg:hidden overflow-hidden px-3 pb-3 sm:px-4 sm:pb-4"
+                  className="lg:hidden overflow-hidden px-2.5 pb-2.5 xs:px-3 xs:pb-3 sm:px-4 sm:pb-4"
                 >
                   <div
-                    className="rounded-lg sm:rounded-xl p-3 sm:p-4 space-y-1.5 sm:space-y-2 mt-2"
+                    className="rounded-lg sm:rounded-xl p-2 xs:p-2.5 sm:p-3 md:p-4 space-y-1 xs:space-y-1.5 sm:space-y-2 mt-1.5 xs:mt-2"
                     style={{
                       backgroundColor: colors.bg.secondary,
                       boxShadow: `inset 0 2px 8px ${colors.accent.primary}20`
@@ -258,7 +262,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.08 }}
-                        className="block px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg font-medium text-sm sm:text-base transition-all duration-300"
+                        className="block px-2.5 py-2 xs:px-3 xs:py-2.5 sm:px-4 sm:py-3 rounded-lg font-medium text-xs xs:text-sm sm:text-base transition-all duration-300"
                         style={{
                           color: activeSection === link.href.slice(1) ? colors.text.primary : colors.text.secondary,
                           backgroundColor: activeSection === link.href.slice(1)
