@@ -171,252 +171,305 @@ const About = () => {
         </motion.div>
 
         {/* Main content about me */}
-        <motion.div variants={itemVariants} className="space-y-5 xs:space-y-6 sm:space-y-7 md:space-y-8 w-full">
-          {/* Texts */}
+        <motion.div variants={itemVariants} className="w-full">
           <div className="w-full xs:w-11/12 mx-auto">
-            <div
-              className="relative overflow-hidden group"
-            >
-              {/* Animated border gradient */}
+            {/* Modern Grid Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+              {/* Left Column - Introduction Card */}
               <motion.div
-                className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.accent.primary}40, ${colors.accent.secondary}40, ${colors.accent.primary}40)`,
-                  backgroundSize: '200% 200%',
-                }}
-                animate={{
-                  backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-
-              {/* Content card */}
-              <div
-                className="relative p-5 xs:p-6 sm:p-7 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl backdrop-blur-sm m-[2px]"
-                style={{
-                  backgroundColor: colors.bg.card,
-                  border: `1px solid ${colors.accent.border}`,
-                  boxShadow: `0 8px 32px ${colors.accent.primary}10`,
-                }}
+                className="relative overflow-hidden group rounded-2xl"
+                initial={{ opacity: 0, x: -30 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
               >
-                {/* Top accent bar with animation */}
+                {/* Animated Background */}
                 <motion.div
-                  className="absolute top-0 left-0 right-0 h-1 rounded-t-xl sm:rounded-t-2xl"
+                  className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary}, ${colors.accent.primary})`,
-                    backgroundSize: '200% 100%',
+                    background: `linear-gradient(135deg, ${colors.accent.primary}15, ${colors.accent.secondary}15)`,
                   }}
                   animate={{
-                    backgroundPosition: ['0% 0%', '100% 0%', '0% 0%'],
+                    backgroundPosition: ['0% 0%', '100% 100%'],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 10,
                     repeat: Infinity,
-                    ease: "linear",
+                    repeatType: "reverse",
                   }}
                 />
 
-                {/* Greeting with typing effect style */}
-                <motion.div
-                  className="mb-6 xs:mb-7 sm:mb-8 md:mb-10 relative"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
+                <div
+                  className="relative p-6 xs:p-7 sm:p-8 md:p-9 lg:p-10 backdrop-blur-sm"
+                  style={{
+                    backgroundColor: colors.bg.card + 'F0',
+                    border: `2px solid ${colors.accent.primary}30`,
+                  }}
                 >
-                  <div className="flex items-center gap-2 mb-2">
+                  {/* Header */}
+                  <div className="mb-6">
                     <motion.div
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: colors.accent.primary }}
-                      animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.5, 1, 0.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                    />
-                    <span
-                      className="text-xs xs:text-sm font-mono tracking-wider uppercase"
-                      style={{ color: colors.accent.primary }}
-                    >
-                      Introduction
-                    </span>
-                  </div>
-                  <h3
-                    className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"
-                    style={{ color: colors.text.primary }}
-                  >
-                    Hello! I'm{" "}
-                    <motion.span
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
                       style={{
-                        color: colors.accent.primary,
-                        background: `linear-gradient(135deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
+                        backgroundColor: colors.accent.primary + '20',
+                        border: `1px solid ${colors.accent.primary}40`,
                       }}
                       animate={{
-                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                      }}
-                      transition={{
-                        duration: 5,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      Musfika Iqfat
-                    </motion.span>
-                  </h3>
-                </motion.div>
-
-                {/* Content sections with better spacing and icons */}
-                <div className="space-y-5 xs:space-y-6 sm:space-y-7 md:space-y-8">
-                  {/* Section 1 */}
-                  <motion.div
-                    className="relative pl-4 xs:pl-5 sm:pl-6 border-l-2"
-                    style={{ borderColor: colors.accent.primary + '40' }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: colors.accent.primary }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        boxShadow: [`0 0 0 0 ${colors.accent.primary}40`, `0 0 0 6px ${colors.accent.primary}00`, `0 0 0 0 ${colors.accent.primary}40`],
+                        boxShadow: [
+                          `0 0 20px ${colors.accent.primary}30`,
+                          `0 0 30px ${colors.accent.primary}50`,
+                          `0 0 20px ${colors.accent.primary}30`,
+                        ],
                       }}
                       transition={{
                         duration: 2,
                         repeat: Infinity,
                       }}
-                    />
-                    <p
-                      className="text-sm xs:text-base sm:text-lg md:text-xl leading-relaxed"
-                      style={{ color: colors.text.secondary }}
                     >
-                      I'm currently pursuing my Bachelor's degree in <span style={{ color: colors.text.primary, fontWeight: 600 }}>Computer Science and Engineering</span> at{" "}
-                      <span style={{
-                        color: colors.accent.primary,
-                        fontWeight: 700,
-                        textShadow: `0 0 20px ${colors.accent.primary}30`,
-                      }}>
-                        Z. H. Sikder University of Science and Technology
-                      </span>, where I'm in my 3rd year. My academic journey has been fueled by a deep passion for technology and innovation.
-                    </p>
-                  </motion.div>
-
-                  {/* Section 2 */}
-                  <motion.div
-                    className="relative pl-4 xs:pl-5 sm:pl-6 border-l-2"
-                    style={{ borderColor: colors.accent.secondary + '40' }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.7, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: colors.accent.secondary }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        boxShadow: [`0 0 0 0 ${colors.accent.secondary}40`, `0 0 0 6px ${colors.accent.secondary}00`, `0 0 0 0 ${colors.accent.secondary}40`],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: 0.5,
-                      }}
-                    />
-                    <p
-                      className="text-sm xs:text-base sm:text-lg md:text-xl leading-relaxed"
-                      style={{ color: colors.text.secondary }}
-                    >
-                      As a <span style={{ color: colors.accent.secondary, fontWeight: 700 }}>Full Stack Developer</span> specializing in the{" "}
-                      <span style={{ color: colors.text.primary, fontWeight: 600 }}>MERN stack</span>, I love bringing ideas to life through code. I find joy in building web applications that are not only functional but also provide seamless user experiences. My journey in web development is driven by curiosity and a constant desire to learn and grow.
-                    </p>
-                  </motion.div>
-
-                  {/* Section 3 */}
-                  <motion.div
-                    className="relative pl-4 xs:pl-5 sm:pl-6 border-l-2"
-                    style={{ borderColor: colors.accent.primary + '40' }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.9, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: colors.accent.primary }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        boxShadow: [`0 0 0 0 ${colors.accent.primary}40`, `0 0 0 6px ${colors.accent.primary}00`, `0 0 0 0 ${colors.accent.primary}40`],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: 1,
-                      }}
-                    />
-                    <p
-                      className="text-sm xs:text-base sm:text-lg md:text-xl leading-relaxed"
-                      style={{ color: colors.text.secondary }}
-                    >
-                      Beyond coding, I'm passionate about understanding the theoretical foundations of computer science and applying them to solve real-world problems. Whether it's{" "}
-                      <span style={{ color: colors.text.primary, fontWeight: 600 }}>algorithms, data structures, or system design</span>, I believe that a strong foundation in CS fundamentals is key to becoming a better developer.
-                    </p>
-                  </motion.div>
-                </div>
-
-                {/* Bottom decorative element */}
-                <motion.div
-                  className="mt-6 xs:mt-7 sm:mt-8 flex items-center gap-2"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ delay: 1.1, duration: 0.6 }}
-                >
-                  <motion.div
-                    className="h-px flex-1 rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, transparent, ${colors.accent.primary}40, transparent)`,
-                    }}
-                  />
-                  <motion.div
-                    className="flex gap-1.5"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  >
-                    {[0, 1, 2].map((i) => (
                       <motion.div
-                        key={i}
-                        className="w-1.5 h-1.5 rounded-full"
+                        className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: colors.accent.primary }}
                         animate={{
-                          opacity: [0.3, 1, 0.3],
+                          scale: [1, 1.5, 1],
                         }}
                         transition={{
                           duration: 1.5,
                           repeat: Infinity,
-                          delay: i * 0.2,
                         }}
                       />
-                    ))}
-                  </motion.div>
+                      <span
+                        className="text-xs sm:text-sm font-semibold tracking-wider uppercase"
+                        style={{ color: colors.accent.primary }}
+                      >
+                        Introduction
+                      </span>
+                    </motion.div>
+
+                    <h3
+                      className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
+                      style={{ color: colors.text.primary }}
+                    >
+                      Hello! I'm{" "}
+                      <motion.span
+                        className="block mt-2"
+                        style={{
+                          background: `linear-gradient(135deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundSize: '200% 200%',
+                        }}
+                        animate={{
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                        }}
+                        transition={{
+                          duration: 5,
+                          repeat: Infinity,
+                        }}
+                      >
+                        Musfika Iqfat
+                      </motion.span>
+                    </h3>
+                  </div>
+
+                  {/* Education Badge */}
                   <motion.div
-                    className="h-px flex-1 rounded-full"
+                    className="p-5 rounded-xl mb-6"
                     style={{
-                      background: `linear-gradient(90deg, transparent, ${colors.accent.primary}40, transparent)`,
+                      backgroundColor: colors.bg.secondary,
+                      border: `1px solid ${colors.accent.border}`,
                     }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <motion.div
+                        className="p-3 rounded-lg"
+                        style={{
+                          backgroundColor: colors.accent.primary + '20',
+                        }}
+                        animate={{
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                        }}
+                      >
+                        <FaGraduationCap
+                          className="text-2xl sm:text-3xl"
+                          style={{ color: colors.accent.primary }}
+                        />
+                      </motion.div>
+                      <div className="flex-1">
+                        <p
+                          className="text-xs sm:text-sm font-semibold mb-1"
+                          style={{ color: colors.accent.primary }}
+                        >
+                          Currently Studying
+                        </p>
+                        <p
+                          className="text-sm sm:text-base font-bold mb-1"
+                          style={{ color: colors.text.primary }}
+                        >
+                          B.Sc. in Computer Science & Engineering
+                        </p>
+                        <p
+                          className="text-xs sm:text-sm leading-relaxed"
+                          style={{ color: colors.text.secondary }}
+                        >
+                          Z. H. Sikder University of Science and Technology
+                        </p>
+                        <p
+                          className="text-xs mt-2 font-semibold"
+                          style={{ color: colors.accent.secondary }}
+                        >
+                          3rd Year Student
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Bottom Decorative Line */}
+                  <motion.div
+                    className="h-1 rounded-full mt-6"
+                    style={{
+                      background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
+                    }}
+                    initial={{ width: '0%' }}
+                    animate={inView ? { width: '100%' } : { width: '0%' }}
+                    transition={{ delay: 0.8, duration: 1 }}
                   />
+                </div>
+              </motion.div>
+
+              {/* Right Column - Experience Cards */}
+              <div className="space-y-4 xs:space-y-5 sm:space-y-6">
+                {/* Full Stack Developer Card */}
+                <motion.div
+                  className="relative overflow-hidden rounded-2xl group"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${colors.accent.secondary}10, ${colors.accent.primary}10)`,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+
+                  <div
+                    className="relative p-6 xs:p-7 sm:p-8"
+                    style={{
+                      backgroundColor: colors.bg.card,
+                      border: `2px solid ${colors.accent.secondary}30`,
+                    }}
+                  >
+                    <div className="flex items-start gap-4 mb-4">
+                      <motion.div
+                        className="p-3 rounded-xl"
+                        style={{
+                          backgroundColor: colors.accent.secondary + '20',
+                        }}
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <FaLaptopCode
+                          className="text-2xl sm:text-3xl"
+                          style={{ color: colors.accent.secondary }}
+                        />
+                      </motion.div>
+                      <div className="flex-1">
+                        <h4
+                          className="text-lg sm:text-xl md:text-2xl font-bold mb-2"
+                          style={{ color: colors.accent.secondary }}
+                        >
+                          Full Stack Developer
+                        </h4>
+                        <p
+                          className="text-sm sm:text-base leading-relaxed"
+                          style={{ color: colors.text.secondary }}
+                        >
+                          Specializing in the <span style={{ color: colors.text.primary, fontWeight: 600 }}>MERN stack</span>, I bring ideas to life through code. Building web applications that are functional and provide seamless user experiences drives my passion for development.
+                        </p>
+                      </div>
+                    </div>
+
+                    <motion.div
+                      className="h-1 rounded-full"
+                      style={{
+                        background: `linear-gradient(90deg, ${colors.accent.secondary}, transparent)`,
+                      }}
+                      initial={{ width: '0%' }}
+                      animate={inView ? { width: '100%' } : { width: '0%' }}
+                      transition={{ delay: 1, duration: 0.8 }}
+                    />
+                  </div>
+                </motion.div>
+
+                {/* CS Fundamentals Card */}
+                <motion.div
+                  className="relative overflow-hidden rounded-2xl group"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${colors.accent.primary}10, ${colors.accent.secondary}10)`,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+
+                  <div
+                    className="relative p-6 xs:p-7 sm:p-8"
+                    style={{
+                      backgroundColor: colors.bg.card,
+                      border: `2px solid ${colors.accent.primary}30`,
+                    }}
+                  >
+                    <div className="flex items-start gap-4 mb-4">
+                      <motion.div
+                        className="p-3 rounded-xl"
+                        style={{
+                          backgroundColor: colors.accent.primary + '20',
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <FaDatabase
+                          className="text-2xl sm:text-3xl"
+                          style={{ color: colors.accent.primary }}
+                        />
+                      </motion.div>
+                      <div className="flex-1">
+                        <h4
+                          className="text-lg sm:text-xl md:text-2xl font-bold mb-2"
+                          style={{ color: colors.accent.primary }}
+                        >
+                          CS Fundamentals
+                        </h4>
+                        <p
+                          className="text-sm sm:text-base leading-relaxed"
+                          style={{ color: colors.text.secondary }}
+                        >
+                          Passionate about <span style={{ color: colors.text.primary, fontWeight: 600 }}>algorithms, data structures, and system design</span>. I believe a strong foundation in CS fundamentals is essential for solving real-world problems effectively.
+                        </p>
+                      </div>
+                    </div>
+
+                    <motion.div
+                      className="h-1 rounded-full"
+                      style={{
+                        background: `linear-gradient(90deg, ${colors.accent.primary}, transparent)`,
+                      }}
+                      initial={{ width: '0%' }}
+                      animate={inView ? { width: '100%' } : { width: '0%' }}
+                      transition={{ delay: 1.2, duration: 0.8 }}
+                    />
+                  </div>
                 </motion.div>
               </div>
             </div>
