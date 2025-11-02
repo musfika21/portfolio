@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Belleza&display=swap');
+@import "tailwindcss";
 
 .belleza-regular {
   font-family: "Belleza", sans-serif;

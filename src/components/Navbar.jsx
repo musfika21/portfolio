@@ -1,47 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
+import { useState } from "react";
+import { Menu, X, Sun, Moon, Github, Dribbble, Figma } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isDark, setIsDark] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
-  const { isDark, toggleTheme, colors } = useTheme();
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "home", href: "#home" },
+    { name: "works", href: "#works" },
+    { name: "about-me", href: "#about-me" },
+    { name: "contacts", href: "#contacts" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Update scroll progress
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-
-      // Detect active section based on scroll position
-      const sections = navLinks.map(link => link.href.slice(1));
-      const scrollPosition = window.scrollY + 150; // Offset for navbar height
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    handleScroll(); // Call once on mount
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const socialLinks = [
+    { icon: Github, href: "https://github.com", label: "Github" },
+    { icon: Dribbble, href: "https://dribbble.com", label: "Dribbble" },
+    { icon: Figma, href: "https://figma.com", label: "Figma" },
+  ];
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -49,249 +25,182 @@ const Navbar = () => {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+    setActiveSection(href.slice(1));
     setIsOpen(false);
+  };
+
+  const colors = {
+    bg: isDark ? "#000000" : "#FFFFFF",
+    text: isDark ? "#ffffff" : "#000000",
+    accent: "#C778DD",
+    border: isDark ? "#C778DD" : "#C778DD",
   };
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 sm:h-1 z-[60] origin-left"
-        style={{
-          background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
-          scaleX: scrollProgress / 100,
-        }}
-        initial={{ scaleX: 0 }}
-      />
-
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
-        className="fixed w-full z-50 pt-1.5 px-2 xs:pt-2 xs:px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4"
-        style={{ top: '0.1rem' }}
+      {/* Vertical Social Links - Left Side */}
+      <div 
+        className="fixed left-0 top-0 bottom-0 w-8 z-40 hidden md:flex flex-col items-center justify-start pt-4"
+        style={{ backgroundColor: colors.bg }}
       >
-        <div className="w-full xs:w-11/12 mx-auto max-w-7xl">
-          <div
-            className="relative rounded-lg xs:rounded-xl sm:rounded-2xl shadow-2xl backdrop-blur-xl transition-all duration-300"
-            style={{
-              backgroundColor: isDark
-                ? 'rgba(76, 91, 108, 0.7)'
-                : 'rgba(208, 205, 201, 0.7)',
-              border: `1px solid ${colors.accent.border}20`,
-              boxShadow: isDark
-                ? `0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px ${colors.accent.border}30`
-                : `0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px ${colors.accent.border}30`,
-            }}
-          >
-            <div className="flex justify-between items-center px-2.5 py-2.5 xs:px-3 xs:py-3 sm:px-4 sm:py-3 md:px-6 md:py-4">
-              {/* Logo Container - Elevated */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative rounded-md xs:rounded-lg sm:rounded-xl cursor-pointer p-1 xs:p-1.5 sm:p-2"
-                style={{
-                  backgroundColor: colors.bg.card,
-                  boxShadow: `0 4px 12px ${colors.accent.primary}40`,
-                }}
-              >
+        {/* Vertical Line */}
+        <div 
+          className="w-px h-32 mb-4"
+          style={{ backgroundColor: colors.text }}
+        />
+        
+        {/* Social Icons */}
+        <div className="flex flex-col gap-4">
+          {socialLinks.map((social, index) => (
+            <a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-110"
+              style={{ color: colors.text }}
+              onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
+              onMouseLeave={(e) => e.currentTarget.style.color = colors.text}
+              aria-label={social.label}
+            >
+              <social.icon size={20} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Top Navbar */}
+      <nav 
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{ backgroundColor: colors.bg }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <a
+              href="#home"
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center gap-2 font-bold text-white"
+            >
+              <div className="w-4 h-4 border-2 border-white" />
+              <span>Elias</span>
+            </a>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link, index) => (
                 <a
-                  href="#home"
-                  onClick={(e) => handleNavClick(e, '#home')}
-                  className="font-bold text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl tracking-tight relative flex items-center"
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="transition-all duration-300 font-medium"
                   style={{
-                    color: colors.text.primary,
-                    textShadow: `0 0 20px ${colors.accent.primary}60`
+                    color: activeSection === link.href.slice(1) ? "#FFFFFF" : colors.text,
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = "#FFFFFF"}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = activeSection === link.href.slice(1) ? "#FFFFFF" : colors.text;
                   }}
                 >
-                  <img 
-                    src="./logo.png" 
-                    className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 object-contain" 
-                    alt="Logo"
-                  />
+                  <span style={{ color: colors.accent }}>#</span>{link.name}
                 </a>
-              </motion.div>
-
-              {/* Desktop Menu - Layered Cards */}
-              <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-2">
-                {navLinks.map((link, index) => {
-                  const isActive = activeSection === link.href.slice(1);
-                  return (
-                    <motion.li
-                      key={link.name}
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.08 }}
-                    >
-                      <motion.a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        whileHover={{ y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="relative px-2.5 py-1.5 xl:px-4 xl:py-2 2xl:px-5 2xl:py-2.5 rounded-lg font-medium text-xs xl:text-sm 2xl:text-base transition-all duration-300 block whitespace-nowrap"
-                        style={{
-                          color: isActive ? colors.text.primary : colors.text.secondary,
-                          backgroundColor: isActive ? colors.bg.secondary : 'transparent',
-                          boxShadow: isActive ? `0 4px 12px ${colors.accent.primary}30` : 'none',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isActive) {
-                            e.currentTarget.style.backgroundColor = colors.bg.cardHover + '40';
-                            e.currentTarget.style.color = colors.text.primary;
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isActive) {
-                            e.currentTarget.style.backgroundColor = 'transparent';
-                            e.currentTarget.style.color = colors.text.secondary;
-                          }
-                        }}
-                      >
-                        {link.name}
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeIndicator"
-                            className="absolute bottom-0 left-1/2 w-1/2 h-0.5 rounded-full"
-                            style={{
-                              backgroundColor: colors.accent.primary,
-                              transform: 'translateX(-50%)',
-                              boxShadow: `0 0 10px ${colors.accent.primary}`
-                            }}
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          />
-                        )}
-                      </motion.a>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-
-              {/* Theme Toggle & Mobile Menu */}
-              <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
-                {/* Glowing Theme Toggle Orb */}
-                <motion.button
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={toggleTheme}
-                  className="relative p-1.5 xs:p-2 sm:p-2.5 rounded-full transition-all duration-300 cursor-pointer"
-                  style={{
-                    backgroundColor: colors.bg.card,
-                    boxShadow: isDark
-                      ? `0 0 20px ${colors.accent.primary}60, 0 4px 12px rgba(0, 0, 0, 0.3)`
-                      : `0 0 20px ${colors.accent.secondary}40, 0 4px 12px rgba(0, 0, 0, 0.1)`,
-                    color: colors.accent.primary,
-                  }}
-                  aria-label="Toggle theme"
-                >
-                  <motion.div
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: isDark ? 0 : 180 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {isDark ? (
-                      <FaSun className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
-                    ) : (
-                      <FaMoon className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
-                    )}
-                  </motion.div>
-
-                  {/* Orb Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle, ${colors.accent.primary}40, transparent)`,
-                    }}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.5, 0.2, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                </motion.button>
-
-                {/* Mobile Menu Button */}
-                <motion.button
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="lg:hidden p-1.5 xs:p-2 sm:p-2.5 rounded-lg transition-all duration-300"
-                  style={{
-                    backgroundColor: colors.bg.card,
-                    color: colors.text.primary,
-                    boxShadow: `0 4px 12px ${colors.accent.primary}30`
-                  }}
-                >
-                  <motion.div
-                    animate={{ rotate: isOpen ? 90 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {isOpen ? (
-                      <FaTimes className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                    ) : (
-                      <FaBars className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                    )}
-                  </motion.div>
-                </motion.button>
-              </div>
+              ))}
+              
+              {/* Theme Toggle Button */}
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className="p-2 transition-all duration-300 rounded-lg hover:bg-opacity-10 cursor-pointer"
+                style={{ color: colors.text }}
+                onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
+                onMouseLeave={(e) => e.currentTarget.style.color = colors.text}
+                aria-label="Toggle theme"
+              >
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
             </div>
 
-            {/* Mobile Menu - Layered Dropdown */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="lg:hidden overflow-hidden px-2.5 pb-2.5 xs:px-3 xs:pb-3 sm:px-4 sm:pb-4"
-                >
-                  <div
-                    className="rounded-lg sm:rounded-xl p-2 xs:p-2.5 sm:p-3 md:p-4 space-y-1 xs:space-y-1.5 sm:space-y-2 mt-1.5 xs:mt-2"
-                    style={{
-                      backgroundColor: colors.bg.secondary,
-                      boxShadow: `inset 0 2px 8px ${colors.accent.primary}20`
-                    }}
-                  >
-                    {navLinks.map((link, index) => (
-                      <motion.a
-                        key={link.name}
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.08 }}
-                        className="block px-2.5 py-2 xs:px-3 xs:py-2.5 sm:px-4 sm:py-3 rounded-lg font-medium text-xs xs:text-sm sm:text-base transition-all duration-300"
-                        style={{
-                          color: activeSection === link.href.slice(1) ? colors.text.primary : colors.text.secondary,
-                          backgroundColor: activeSection === link.href.slice(1)
-                            ? colors.bg.card
-                            : 'transparent',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = colors.bg.cardHover;
-                          e.currentTarget.style.color = colors.text.primary;
-                          e.currentTarget.style.transform = 'translateX(8px)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor =
-                            activeSection === link.href.slice(1) ? colors.bg.card : 'transparent';
-                          e.currentTarget.style.color =
-                            activeSection === link.href.slice(1) ? colors.text.primary : colors.text.secondary;
-                          e.currentTarget.style.transform = 'translateX(0)';
-                        }}
-                      >
-                        {link.name}
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 transition-all duration-300"
+              style={{ color: colors.text }}
+              onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
+              onMouseLeave={(e) => e.currentTarget.style.color = colors.text}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
-      </motion.nav>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div 
+            className="md:hidden border-t"
+            style={{ 
+              backgroundColor: colors.bg,
+              borderColor: colors.text + "40"
+            }}
+          >
+            <div className="px-4 py-6 space-y-4">
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="block py-2 transition-all duration-300 font-medium border-l-2 pl-4"
+                  style={{
+                    color: activeSection === link.href.slice(1) ? "#FFFFFF" : colors.text,
+                    borderColor: activeSection === link.href.slice(1) ? colors.accent : "transparent",
+                  }}
+                >
+                  <span style={{ color: colors.accent }}>#</span>{link.name}
+                </a>
+              ))}
+              
+              {/* Theme Toggle in Mobile */}
+              <div className="pt-4 border-t" style={{ borderColor: colors.text + "40" }}>
+                <button
+                  onClick={() => setIsDark(!isDark)}
+                  className="flex items-center gap-2 w-full py-2 transition-all duration-300"
+                  style={{ color: colors.text }}
+                >
+                  {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                  <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
+                </button>
+              </div>
+              
+              <div className="border-t" style={{ borderColor: colors.text + "40" }}>
+                <select 
+                  className="bg-transparent border-none outline-none cursor-pointer w-full py-2"
+                  style={{ color: colors.text }}
+                >
+                  <option value="en">EN</option>
+                  <option value="bn">BN</option>
+                </select>
+              </div>
+
+              {/* Mobile Social Links */}
+              <div className="flex gap-6 pt-4 justify-center">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-all duration-300"
+                    style={{ color: colors.text }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
+                    onMouseLeave={(e) => e.currentTarget.style.color = colors.text}
+                    aria-label={social.label}
+                  >
+                    <social.icon size={24} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
     </>
   );
 };
