@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { FaCode, FaLaptopCode, FaGraduationCap, FaRocket, FaDatabase, FaPalette } from "react-icons/fa";
 
 // Custom useInView hook

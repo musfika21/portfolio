@@ -3,13 +3,9 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx}",
   ],
+  darkMode: 'class',
   theme: {
-    extend: {
-      colors: {
-        primary: "#9CAFAA",
-        dark: "#000000",
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };

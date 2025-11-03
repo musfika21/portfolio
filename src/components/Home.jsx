@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
@@ -12,15 +11,15 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main className="">
-        <Hero />
+      <main>
+        {/* <Hero />
         <About />
         <Skills />
         <Education />
-        <Projects />
+        <Projects /> */}
         <Contact />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

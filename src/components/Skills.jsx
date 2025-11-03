@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { 
   FaReact, 
   FaNodeJs, 

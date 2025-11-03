@@ -1,12 +1,11 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { FaGithub, FaLinkedin, FaFacebook, FaHeart, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import useAuth from "../Hooks/useAuth";
 
 const Footer = () => {
-  const { colors } = useTheme();
 
+  const { theme } = useAuth();
   const socialLinks = [
     { icon: FaGithub, url: "https://github.com/musfika21", label: "GitHub" },
     { icon: FaLinkedin, url: "https://www.linkedin.com/in/musfika-iqfat21/", label: "LinkedIn" },
@@ -36,7 +35,7 @@ const Footer = () => {
       className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-6 sm:pb-8 overflow-hidden"
       style={{ backgroundColor: colors.bg.card }}
     >
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements
       <motion.div
         className="absolute inset-0 opacity-10"
         initial={{ opacity: 0 }}
@@ -70,7 +69,7 @@ const Footer = () => {
             delay: 1,
           }}
         />
-      </motion.div>
+      </motion.div> */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         {/* Main Footer Content */}
@@ -85,18 +84,18 @@ const Footer = () => {
           >
             <h3
               className="text-xl sm:text-2xl md:text-3xl font-bold"
-              style={{ color: colors.text.primary }}
+              // style={{ color: colors.text.primary }}
             >
               Musfika{" "}
-              <span style={{ color: colors.accent.primary }}>Iqfat</span>
+              {/* <span style={{ color: colors.accent.primary }}>Iqfat</span> */}
             </h3>
             <p
               className="text-sm sm:text-base leading-relaxed"
-              style={{ color: colors.text.secondary }}
+              // style={{ color: colors.text.secondary }}
             >
               Full Stack Developer passionate about creating beautiful and functional web applications with modern technologies.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex gap-3 sm:gap-4">
               {socialLinks.map((social, index) => {
@@ -109,16 +108,16 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg sm:rounded-xl transition-all duration-300"
                     style={{
-                      backgroundColor: colors.bg.primary,
-                      color: colors.text.secondary,
-                      border: `1px solid ${colors.accent.border}`,
+                      // backgroundColor: colors.bg.primary,
+                      // color: colors.text.secondary,
+                      // border: `1px solid ${colors.accent.border}`,
                     }}
                     whileHover={{
                       scale: 1.1,
                       y: -3,
-                      backgroundColor: colors.bg.secondary,
-                      color: colors.accent.primary,
-                      boxShadow: `0 8px 20px ${colors.accent.primary}40`,
+                      // backgroundColor: colors.bg.secondary,
+                      // color: colors.accent.primary,
+                      // boxShadow: `0 8px 20px ${colors.accent.primary}40`,
                     }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={social.label}
@@ -266,7 +265,7 @@ const Footer = () => {
           >
             © {currentYear} Musfika Iqfat. All rights reserved.
           </p>
-          
+
           <motion.p
             className="text-xs sm:text-sm md:text-base flex items-center gap-2"
             style={{ color: colors.text.secondary }}

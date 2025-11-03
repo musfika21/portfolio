@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
+import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
 
-    // STATES
     const [theme, setTheme] = useState(false);
 
-    // theme in the local storage
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem("theme");
         if (savedTheme) {
-            setTheme(savedTheme === 'dark');
+            setTheme(savedTheme === "dark");
         }
     }, []);
 
-    // toggle theme
     const toggleTheme = () => {
         setTheme((prevDark) => {
             const newTheme = !prevDark ? "dark" : "light";
@@ -22,7 +20,6 @@ const AuthProvider = ({ children }) => {
         });
     };
 
-    // User Info
     const userInfo = {
         theme,
         toggleTheme,

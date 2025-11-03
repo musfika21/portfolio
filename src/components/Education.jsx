@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { FaGraduationCap, FaSchool, FaUniversity } from "react-icons/fa";
 
 // Custom useInView hook

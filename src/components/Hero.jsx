@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaFacebook, FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 // Custom useInView hook
