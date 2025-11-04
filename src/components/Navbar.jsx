@@ -4,7 +4,6 @@ import { FiGithub, FiLinkedin, FiFacebook } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
-import { title } from "motion/react-client";
 
 const Navbar = () => {
 
@@ -40,12 +39,12 @@ const Navbar = () => {
               to={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative group text-gray-500 transition-all duration-300 hover:scale-110 hover:text-purple-400"
+              className="relative group text-gray-500 transition-all duration-300 hover:scale-110 hover:text-blue-500"
               aria-label={social?.label}
             >
               <social.icon size={20} />
               {/* Custom Tooltip */}
-              <span className="absolute left-full ml-2 px-2 py-1 bg-purple-400 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+              <span className="absolute left-full ml-2 px-2 py-1 bg-blue-500 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
                 {social?.title}
               </span>
             </Link>
@@ -61,7 +60,7 @@ const Navbar = () => {
             <Link
               to="/"
               className="font-bold">
-              <span className="text-purple-400 md: ml-10 lg:ml-10 xl:ml-0"> MUSFIKA IQFAT</span>
+              <span className="text-blue-500 md:ml-10 lg:ml-10 xl:ml-0"> MUSFIKA IQFAT</span>
             </Link>
 
             {/* Desktop Menu */}
@@ -72,7 +71,7 @@ const Navbar = () => {
                     <NavLink to={link.href} className="relative inline-block group px-1 py-0.5 transition-colors duration-300">
                       {({ isActive }) => (
                         <>
-                          <span className={`${isActive ? 'text-purple-400' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
+                          <span className={`${isActive ? 'text-blue-500' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
                             {link.name}
                           </span>
                         </>
@@ -124,7 +123,7 @@ const Navbar = () => {
                   className="block py-2 transition-all duration-300 font-medium"
                 >
                   {({ isActive }) => (
-                    <span className={`${isActive ? 'text-purple-400' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
+                    <span className={`${isActive ? 'text-blue-500' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
                       {link.name}
                     </span>
                   )}
