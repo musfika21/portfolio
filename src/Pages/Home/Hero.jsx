@@ -1,12 +1,12 @@
-import heroImage from "../assets/hero.png";
-import useAuth from "../Hooks/useAuth";
-import DottedBox from "./Shared/DottedBox";
+import heroImage from "../../assets/hero.png";
+import DottedBox from "../../components/Shared/DottedBox";
+import useAuth from "../../Hooks/useAuth";
 
-export default function Banner() {
+const Hero = () => {
 
   const { theme } = useAuth()
   return (
-    <div className={`w-full ${ theme ? "bg-black text-white" : "bg-white text-black"} pt28 md:pt-38 md:px-16 relative overflow-hidden min-h-screen flex items-center`}>
+    <div className={`w-full mx-auto ${ theme ? "bg-black text-white" : "bg-white text-black"} pt-28 md:pt-38 md:px-16 xl:px-40 relative overflow-hidden min-h-screen flex items-center`}>
       {/* Decorative dots using DottedBox component */}
       <DottedBox position="top-right" className="pt-15" rows={4} cols={5} />
       <DottedBox position="bottom-right" rows={4} cols={5} />
@@ -19,11 +19,11 @@ export default function Banner() {
             <span className="text-blue-500">Front End Developer</span>
           </h1>
 
-          <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-md mx-auto lg:mx-0 px-2">
+          <p className="text-gray-500 text-sm sm:text-base md:text-lg max-w-md mx-auto lg:mx-0 px-2">
             She crafts responsive websites where technologies meet creativity
           </p>
 
-          <button className={`border-2 border-blue-500 ${theme ? "" : "bg-blue-100 text-blue-500 hover:bg-blue-500 hover:text-white"} px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base transition-colors duration-300`}>
+          <button className={`border-2 border-blue-500 text-blue-500 hover:text-white ${theme ? "hover:bg-blue-500 " : "bg-blue-100  hover:bg-blue-500"} px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base transition-colors duration-300 cursor-pointer`}>
             Contact me!!
           </button>
         </div>
@@ -44,3 +44,4 @@ export default function Banner() {
     </div>
   );
 }
+export default Hero;

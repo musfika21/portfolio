@@ -11,10 +11,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "home", href: "/" },
-    { name: "works", href: "/works" },
+    { name: "HOME", href: "/" },
+    { name: "PROJECTS", href: "/projects" },
     { name: "about-me", href: "/about-me" },
-    { name: "contacts", href: "/contacts" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const socialLinks = [
@@ -54,59 +54,61 @@ const Navbar = () => {
 
       {/* Top Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50`}>
-        <div className={`md:max-4xl ml-auto lg:max-w-7xl lg:mx-auto px-4 md:px-8 ${theme ? "bg-black" : "bg-white"} `}>
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <Link
-              to="/"
-              className="font-bold">
-              <span className="text-blue-500 md:ml-10 lg:ml-10 xl:ml-0"> MUSFIKA IQFAT</span>
-            </Link>
+        <div className={`w-full mx-auto px-4 md:px-8 ${theme ? "bg-black" : "bg-white"} `}>
+          <div className="w-full mx-auto xl:max-w-7xl xl:px-5">
+            <div className="flex justify-between items-center h-16">
+              {/* Logo */}
+              <Link
+                to="/"
+                className="font-bold">
+                <span className="text-blue-500 md:ml-10 lg:ml-10 xl:ml-5"> MUSFIKA IQFAT</span>
+              </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              <ul className="flex items-center gap-8">
-                {navLinks.map((link) => (
-                  <li key={link.name} className="text-lg flex items-center space-x-2">
-                    <NavLink to={link.href} className="relative inline-block group px-1 py-0.5 transition-colors duration-300">
-                      {({ isActive }) => (
-                        <>
-                          <span className={`${isActive ? 'text-blue-500' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
-                            {link.name}
-                          </span>
-                        </>
-                      )}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
+              {/* Desktop Menu */}
+              <div className="hidden md:flex items-center gap-8">
+                <ul className="flex items-center gap-8">
+                  {navLinks.map((link) => (
+                    <li key={link.name} className="text-lg flex items-center space-x-2">
+                      <NavLink to={link.href} className="relative inline-block group px-1 py-0.5 transition-colors duration-300">
+                        {({ isActive }) => (
+                          <>
+                            <span className={`${isActive ? 'text-blue-500' : (theme ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-black')}`}>
+                              {link.name}
+                            </span>
+                          </>
+                        )}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Theme Toggle Button */}
-              <button
-                className={`p-2 text-gray-400 transition-all duration-300 rounded-lg ${theme ? "hover:bg-gray-700 hover:text-white" : "hover:bg-gray-300 hover:text-black" }  cursor-pointer`}
-                onClick={toggleTheme}
-              >
-                {theme ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-            </div>
+                {/* Theme Toggle Button */}
+                <button
+                  className={`p-2 text-gray-400 transition-all duration-300 rounded-lg ${theme ? "hover:bg-gray-700 hover:text-white" : "hover:bg-gray-300 hover:text-black"}  cursor-pointer`}
+                  onClick={toggleTheme}
+                >
+                  {theme ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+              </div>
 
-            {/* Mobile: Theme Toggle + Menu Button */}
-            <div className="md:hidden flex items-center gap-2">
-              {/* Theme Toggle Button - mobile e o visible */}
-              <button
-                className="p-2 text-gray-400 transition-all duration-300 rounded-lg hover:bg-gray-700 hover:text-white cursor-pointer"
-                onClick={toggleTheme}
-              >
-                {theme ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
+              {/* Mobile: Theme Toggle + Menu Button */}
+              <div className="md:hidden flex items-center gap-2">
+                {/* Theme Toggle Button - mobile e o visible */}
+                <button
+                  className="p-2 text-gray-400 transition-all duration-300 rounded-lg hover:bg-gray-700 hover:text-white cursor-pointer"
+                  onClick={toggleTheme}
+                >
+                  {theme ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
 
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-gray-400 transition-all duration-300 hover:text-white"
-              >
-                {isOpen ? <X className={`${theme ? "bg-black" : "bg-white"}`} size={24} /> : <Menu size={24} />}
-              </button>
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="p-2 text-gray-400 transition-all duration-300 hover:text-white"
+                >
+                  {isOpen ? <X className={`${theme ? "bg-black" : "bg-white"}`} size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
             </div>
           </div>
         </div>
