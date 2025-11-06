@@ -20,8 +20,7 @@ const Navbar = () => {
   const socialLinks = [
     { icon: FiGithub, href: "https://github.com/musfika21", label: "Github", title: "@musfika21" },
     { icon: FiLinkedin, href: "https://www.linkedin.com/in/musfika-iqfat21", label: "LinkedIn", title: "@Musfika Iqfat" },
-    { icon: FiFacebook, href: "https://www.facebook.com/musfikaiqfatmomo21", label: "Facebook", title: "@Musfika Iqfat Momo" },
-    { icon: FaXTwitter, href: "https://x.com/Musfika_Iqfat21", label: "Twitter", title: "@Musfika_Iqfat21" },
+    { icon: FiFacebook, href: "https://www.facebook.com/musfikaiqfatmomo21", label: "Facebook", title: "@Musfika Iqfat Momo" }
   ];
 
   return (

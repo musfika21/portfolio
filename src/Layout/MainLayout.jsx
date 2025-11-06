@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router';
 import Navbar from '../components/Navbar';
-import useAuth from '../Hooks/useAuth';
 import Footer from '../components/Footer';
 const MainLayout = () => {
 
