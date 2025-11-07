@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { FiGithub, FiLinkedin, FiFacebook } from "react-icons/fi";
-import { FaXTwitter } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
 
@@ -13,8 +12,8 @@ const Navbar = () => {
   const navLinks = [
     { name: "HOME", href: "/" },
     { name: "PROJECTS", href: "/projects" },
-    { name: "about-me", href: "/about-me" },
-    { name: "Contact", href: "/contact" },
+    { name: "QUALIFICATIONS", href: "/qualifications" },
+    { name: "CONTACT", href: "/contact" },
   ];
 
   const socialLinks = [
