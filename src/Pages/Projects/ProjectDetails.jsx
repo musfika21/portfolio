@@ -1,4 +1,5 @@
 import { ArrowLeft, ExternalLink, Github, X } from "lucide-react";
+import { Link } from "react-router";
 
 const ProjectDetails = ({ project, onClose }) => {
 
@@ -24,9 +25,6 @@ const ProjectDetails = ({ project, onClose }) => {
           </div>
 
           <div className="mb-4">
-            <span className="inline-block bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium mb-4">
-              {project.category}
-            </span>
             <h1 className="text-5xl font-bold text-white mb-4">{project.title}</h1>
             <p className="text-xl text-gray-300 mb-6">{project.details.description}</p>
 
@@ -41,15 +39,24 @@ const ProjectDetails = ({ project, onClose }) => {
                 <ExternalLink size={20} />
                 View Live Project
               </a>
-              <a
-                href={project.githubLink}
+              <Link
+                href={project.frontend_githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
               >
                 <Github size={20} />
                 View Source Code
-              </a>
+              </Link>
+              <Link
+                href={project.backend_githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
+              >
+                <Github size={20} />
+                View Source Code
+              </Link>
             </div>
           </div>
         </div>

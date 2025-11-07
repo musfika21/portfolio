@@ -6,7 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 
 export default function PortfolioShowcase() {
 
-  const {theme} = useAuth();
+  const { theme } = useAuth();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,33 +32,7 @@ export default function PortfolioShowcase() {
         setError(err.message);
 
         // Fallback to sample data for demo
-        setProjects([
-          // {
-          //   id: 1,
-          //   title: "E-Commerce Platform",
-          //   shortDesc: "Full-stack online shopping solution",
-          //   category: "Full Stack",
-          //   tech: ["React", "Node.js", "MongoDB", "Stripe"],
-          //   cardImage: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=2000&fit=crop",
-          //   liveLink: "https://example.com",
-          //   githubLink: "https://github.com",
-          //   details: {
-          //     description: "A comprehensive e-commerce platform with real-time inventory management, secure payment processing, and advanced search functionality.",
-          //     features: [
-          //       "User authentication & authorization",
-          //       "Real-time cart management",
-          //       "Stripe payment integration",
-          //       "Admin dashboard with analytics",
-          //       "Product search & filtering"
-          //     ],
-          //     screenshots: [
-          //       { url: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop", caption: "Homepage Design" },
-          //       { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop", caption: "Product Listing" },
-          //       { url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop", caption: "Checkout Process" }
-          //     ]
-          //   }
-          // }
-        ]);
+        setProjects([]);
       } finally {
         setLoading(false);
       }

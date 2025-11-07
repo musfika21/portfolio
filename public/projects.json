@@ -2,13 +2,13 @@
   "projects": [
     {
       "id": 1,
-      "title": "E-Commerce Platform",
+      "title": "Trade Nest",
       "shortDesc": "Full-stack online shopping solution",
-      "category": "Full Stack",
       "tech": ["React", "Node.js", "MongoDB", "Stripe"],
-      "cardImage": "/images/projects/ecommerce-full.jpg",
+      "cardImage": "/projectImages/TradeNest_HomePage.png",
       "liveLink": "https://myproject.com",
-      "githubLink": "https://github.com/username/project",
+      "frontend_githubLink": "https://github.com/username/project",
+      "backend_githubLink": "https://github.com/username/project",
       "details": {
         "description": "A comprehensive e-commerce platform with real-time inventory management...",
         "features": [
@@ -29,29 +29,6 @@
           {
             "url": "/images/projects/ecommerce-checkout.jpg",
             "caption": "Checkout Process"
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "title": "Task Management App",
-      "shortDesc": "Collaborative project management tool",
-      "category": "Web App",
-      "tech": ["Vue.js", "Firebase", "Tailwind CSS"],
-      "cardImage": "/images/projects/taskapp-full.jpg",
-      "liveLink": "https://taskapp.com",
-      "githubLink": "https://github.com/username/taskapp",
-      "details": {
-        "description": "A powerful task management application...",
-        "features": [
-          "Real-time collaboration",
-          "Drag & drop task boards"
-        ],
-        "screenshots": [
-          {
-            "url": "/images/projects/taskapp-dashboard.jpg",
-            "caption": "Dashboard Overview"
           }
         ]
       }
