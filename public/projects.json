@@ -1,40 +1,7 @@
 {
   "projects": [
-    {
-      "id": 1,
-      "title": "Trade Nest",
-      "shortDesc": "Full-stack online shopping solution",
-      "tech": ["React", "Node.js", "MongoDB", "Stripe"],
-      "cardImage": "/projectImages/TradeNest_HomePage.png",
-      "liveLink": "https://myproject.com",
-      "frontend_githubLink": "https://github.com/username/project",
-      "backend_githubLink": "https://github.com/username/project",
-      "details": {
-        "description": "A comprehensive e-commerce platform with real-time inventory management...",
-        "features": [
-          "User authentication & authorization",
-          "Real-time cart management",
-          "Stripe payment integration",
-          "Admin dashboard with analytics"
-        ],
-        "screenshots": [
-          {
-            "url": "/images/projects/ecommerce-hero.jpg",
-            "caption": "Homepage Design"
-          },
-          {
-            "url": "/images/projects/ecommerce-products.jpg",
-            "caption": "Product Listing"
-          },
-          {
-            "url": "/images/projects/ecommerce-checkout.jpg",
-            "caption": "Checkout Process"
-          }
-        ]
-      }
-    },
      {
-      "id": 2,
+      "id": 1,
       "title": "Trade Nest",
       "shortDesc": "Full-stack online shopping solution",
       "tech": ["React", "Node.js", "MongoDB"],
@@ -66,7 +33,7 @@
         ]
       }
     },
-     {
+          {
       "id": 3,
       "title": "Trade Nest",
       "shortDesc": "Full-stack online shopping solution",

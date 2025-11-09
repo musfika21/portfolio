@@ -86,7 +86,7 @@ export default function PortfolioShowcase() {
   }
 
   return (
-    <div className={`w-full pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-20 lg:pb-24 ${theme ? "bg-black" : "bg-white"}`}>
+    <div className={`w-full pt-16 sm:pt-20 md:pt-24 lg:pt-28 ${theme ? "bg-black" : "bg-white"}`}>
       <div className="max-w-7xl md:w-11/12 mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10">
         {/* header + search bar */}
         <div className='flex flex-col lg:flex-row lg:justify-between'>
