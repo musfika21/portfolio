@@ -33,7 +33,40 @@
         ]
       }
     },
+     {
+      "id": 2,
+      "title": "Trade Nest",
+      "shortDesc": "Full-stack online shopping solution",
+      "tech": ["React", "Node.js", "MongoDB", "Stripe"],
+      "cardImage": "/projectImages/TradeNest_HomePage.png",
+      "liveLink": "https://trade-nest01.web.app",
+      "frontend_githubLink": "https://github.com/musfika21/tradeNest-client-side",
+      "backend_githubLink": "https://github.com/musfika21/tradeNest-server-side",
+      "details": {
+        "description": "A full-stack B2B marketplace solution built for wholesale commerce. Platform features multi-vendor product management, shopping cart functionality, user authentication system, role-based dashboards for vendors and admins, and comprehensive inventory tracking.",
+        "features": [
+          "User authentication & authorization",
+          "Real-time cart management",
+          "Stripe payment integration",
+          "Admin dashboard with analytics"
+        ],
+        "screenshots": [
           {
+            "url": "/images/projects/ecommerce-hero.jpg",
+            "caption": "Homepage Design"
+          },
+          {
+            "url": "/images/projects/ecommerce-products.jpg",
+            "caption": "Product Listing"
+          },
+          {
+            "url": "/images/projects/ecommerce-checkout.jpg",
+            "caption": "Checkout Process"
+          }
+        ]
+      }
+    },
+     {
       "id": 3,
       "title": "Trade Nest",
       "shortDesc": "Full-stack online shopping solution",

@@ -4,8 +4,12 @@ import { Loader2, Search, X } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 import ProjectDetails from './ProjectDetails';
 import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router';
+
 export default function PortfolioShowcase() {
+  
   const { theme } = useAuth();
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -174,7 +178,7 @@ export default function PortfolioShowcase() {
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => navigate(`/projects/${project.id}`)}
                 />
               ))}
             </AnimatePresence>

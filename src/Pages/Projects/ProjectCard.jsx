@@ -1,10 +1,12 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 
 const ProjectCard = ({ project, onClick }) => {
+
   const { theme } = useAuth();
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -14,7 +16,7 @@ const ProjectCard = ({ project, onClick }) => {
           ? "bg-gray-900 hover:shadow-blue-500/20" 
           : "bg-white border border-gray-200 hover:shadow-blue-500/10"
       }`}
-      onClick={onClick}
+       onClick={() => navigate(`/projects/${project.id}`)}
     >
       {/* Image Container with Scroll Effect */}
       <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden">
