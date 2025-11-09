@@ -1,272 +1,283 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaSchool, FaUniversity } from "react-icons/fa";
-
-// Custom useInView hook
-const useInView = (options = {}) => {
-  const [inView, setInView] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setInView(true);
-        if (options.triggerOnce) {
-          observer.disconnect();
-        }
-      } else if (!options.triggerOnce) {
-        setInView(false);
-      }
-    }, {
-      threshold: options.threshold || 0.2,
-    });
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [options.threshold, options.triggerOnce]);
-
-  return [ref, inView];
-};
-
-const education = [
-  {
-    degree: "Bachelor of Science in Computer Science & Engineering",
-    institution: "Z. H. Sikder University of Science and Technology",
-    year: "2023 - Present",
-    status: "3rd Year",
-    icon: FaUniversity,
-  },
-  {
-    degree: "Higher Secondary Certificate (HSC)",
-    institution: "Narayanganj Government Mohila College",
-    year: "2020 - 2022",
-    status: "Completed",
-    icon: FaGraduationCap,
-  },
-  {
-    degree: "Secondary School Certificate (SSC)",
-    institution: "Imperial Ideal School and College",
-    year: "2018 - 2020",
-    status: "Completed",
-    icon: FaSchool,
-  },
-];
+import { FaGraduationCap, FaCalendarAlt, FaMapMarkerAlt, FaAward } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const Education = () => {
-  const { colors } = useTheme();
-  const [ref, inView] = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
+  const { theme } = useAuth();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
+  const educationData = [
+    {
+      id: 1,
+      degree: "Bachelor of Science in Computer Science & Engineering",
+      institution: "Z. H. Sikder University of Science & Technology",
+      location: "Shariatpur, Bangladesh",
+      period: "2023 September - 2027 June (Expected)",
+      status: "Ongoing",
+      achievements: [
+        "Batch Stand - Top 3",
+        "Participate to organize ICT Olympiad Shariatpur",
+        "Programming Contest Champion"
+      ],
+      color: "#3b82f6"
     },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.6, 0.05, 0.01, 0.9],
-      },
+    {
+      id: 2,
+      degree: "Higher Secondary Certificate (HSC)",
+      institution: "Narayanganj Government Mohila College",
+      location: "Narayanganj, Bangladesh",
+      period: "2020 - 2022",
+      status: "Completed",
+      achievements: [
+        "Science Group - 100% marks in ICT",
+        "Merit Scholarship Recipient"
+      ],
+      color: "#8b5cf6"
     },
-  };
-
-  if (!education.length) return null;
+    {
+      id: 3,
+      degree: "Secondary School Certificate (SSC)",
+      institution: "Imperial Ideal School & College",
+      location: "Dhaka, Bangladesh",
+      period: "2018 - 2020",
+      status: "Completed",
+      achievements: [
+        "Class Stand - Top 3",
+        "Computer Course Topper",
+        "Perfect attendance"
+      ],
+      color: "#06b6d4"
+    }
+  ];
 
   return (
     <section
       id="education"
-      ref={ref}
-      className="min-h-screen py-16 xs:py-20 sm:py-24 md:py-28 lg:py-32 xl:py-36 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 relative overflow-hidden"
-      style={{ backgroundColor: colors.bg.primary }}
+      className={`w-full pb-12 sm:pb-16 md:pb-20 lg:pb-24 relative overflow-hidden ${
+        theme ? "bg-black" : "bg-white"
+      }`}
     >
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
-        transition={{ duration: 1.5 }}
-      >
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full blur-3xl"
-          style={{ backgroundColor: colors.accent.secondary }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full blur-3xl"
-          style={{ backgroundColor: colors.accent.primary }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-      </motion.div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto"
-      >
+      <div className="max-w-7xl md:w-11/12 mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 relative z-10">
         {/* Section Title */}
-        <motion.div variants={itemVariants} className="text-center mb-10 xs:mb-12 sm:mb-14 md:mb-16 lg:mb-20">
-          <h2
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 xs:mb-4"
-            style={{ color: colors.text.primary }}
-          >
-            My{" "}
-            <span style={{ color: colors.accent.primary }}>Education</span>
-          </h2>
-          <motion.div
-            className="w-16 xs:w-20 sm:w-24 md:w-32 h-1 mx-auto rounded-full"
-            style={{
-              background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
-            }}
-            initial={{ width: 0 }}
-            animate={inView ? { width: "8rem" } : { width: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          />
+        <div className="mb-12 sm:mb-16 md:mb-20">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+            <span className="text-blue-500 text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold">/</span>
+            <h2
+              className={`text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold ${
+                theme ? "text-white" : "text-gray-900"
+              }`}
+            >
+              EDUCATION
+            </h2>
+          </div>
           <p
-            className="mt-4 xs:mt-5 sm:mt-6 text-sm xs:text-base sm:text-lg md:text-xl max-w-2xl mx-auto"
-            style={{ color: colors.text.secondary }}
+            className={`text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed ${
+              theme ? "text-gray-400" : "text-gray-600"
+            }`}
           >
-            My academic journey and educational background
+            My academic journey and qualifications
           </p>
+        </div>
+
+        {/* Timeline Navigation */}
+        <div className="flex justify-center mb-12 sm:mb-16 md:mb-20">
+          <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-4 relative">
+            {educationData.map((edu, index) => (
+              <div key={edu.id} className="flex items-center">
+                <motion.button
+                  onClick={() => setActiveIndex(index)}
+                  className={`relative flex flex-col items-center gap-2 p-3 sm:p-4 transition-all duration-500 group`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {/* Icon Circle */}
+                  <motion.div
+                    className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
+                      activeIndex === index
+                        ? theme
+                          ? "border-blue-500 bg-blue-500/20 shadow-lg shadow-blue-500/50"
+                          : "border-blue-500 bg-blue-500/20 shadow-lg shadow-blue-500/30"
+                        : theme
+                        ? "border-gray-700 bg-gray-900/50 hover:border-blue-500/50"
+                        : "border-gray-300 bg-gray-50 hover:border-blue-500/50"
+                    }`}
+                    animate={activeIndex === index ? { scale: [1, 1.1, 1] } : {}}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <FaGraduationCap
+                      className={`text-xl sm:text-2xl transition-colors duration-500 ${
+                        activeIndex === index ? "text-blue-500" : theme ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    />
+                  </motion.div>
+
+                  {/* Year Label */}
+                  <span
+                    className={`text-xs sm:text-sm font-semibold transition-colors duration-500 ${
+                      activeIndex === index
+                        ? "text-blue-500"
+                        : theme
+                        ? "text-gray-500"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {edu.period.split(" - ")[0]}
+                  </span>
+
+                  {/* Active Indicator */}
+                  {activeIndex === index && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute -bottom-2 left-1/2 w-2 h-2 rounded-full bg-blue-500"
+                      style={{ x: "-50%" }}
+                    />
+                  )}
+                </motion.button>
+
+                {/* Connector Line */}
+                {index < educationData.length - 1 && (
+                  <div
+                    className={`hidden sm:block w-16 md:w-24 lg:w-32 h-0.5 transition-colors duration-500 ${
+                      activeIndex >= index ? "bg-blue-500/50" : theme ? "bg-gray-800" : "bg-gray-300"
+                    }`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education Content */}
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div
+            className={`relative p-6 sm:p-8 md:p-10 border-l-4 transition-all duration-500 ${
+              theme
+                ? "bg-gradient-to-r from-gray-900/80 to-gray-900/40 border-blue-500"
+                : "bg-gradient-to-r from-gray-50 to-white border-blue-500"
+            }`}
+          >
+            {/* Degree Title */}
+            <div className="mb-6">
+              <motion.h3
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 ${
+                  theme ? "text-white" : "text-gray-900"
+                }`}
+              >
+                {educationData[activeIndex].degree}
+              </motion.h3>
+
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4 sm:gap-6"
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`p-2 rounded ${theme ? "bg-blue-500/10" : "bg-blue-500/10"}`}>
+                    <FaMapMarkerAlt className="text-blue-500 text-sm" />
+                  </div>
+                  <div>
+                    <p className={`text-sm sm:text-base font-semibold ${theme ? "text-gray-300" : "text-gray-700"}`}>
+                      {educationData[activeIndex].institution}
+                    </p>
+                    <p className={`text-xs ${theme ? "text-gray-500" : "text-gray-500"}`}>
+                      {educationData[activeIndex].location}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <div className={`p-2 rounded ${theme ? "bg-purple-500/10" : "bg-purple-500/10"}`}>
+                    <FaCalendarAlt className="text-purple-500 text-sm" />
+                  </div>
+                  <div>
+                    <p className={`text-sm sm:text-base font-semibold ${theme ? "text-gray-300" : "text-gray-700"}`}>
+                      {educationData[activeIndex].period}
+                    </p>
+                    <p className={`text-xs ${theme ? "text-gray-500" : "text-gray-500"}`}>
+                      {educationData[activeIndex].status}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Achievements */}
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <FaAward className="text-yellow-500 text-lg" />
+                <h4 className={`text-base sm:text-lg font-bold ${theme ? "text-white" : "text-gray-900"}`}>
+                  Key Achievements
+                </h4>
+              </div>
+              <div className="space-y-3">
+                {educationData[activeIndex].achievements.map((achievement, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.6 + idx * 0.1 }}
+                    className="flex items-start gap-3 group"
+                  >
+                    <div className="mt-1.5">
+                      <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        theme ? "bg-blue-500/50 group-hover:bg-blue-500" : "bg-blue-500/50 group-hover:bg-blue-500"
+                      }`} />
+                    </div>
+                    <p className={`text-sm sm:text-base leading-relaxed ${
+                      theme ? "text-gray-300" : "text-gray-700"
+                    }`}>
+                      {achievement}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Decorative Element */}
+            <motion.div
+              className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <FaGraduationCap className="w-full h-full text-blue-500" />
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Education Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6">
-          {education.map((edu, index) => {
-            const Icon = edu.icon;
-            const isHovered = hoveredIndex === index;
-
-            return (
-              <motion.div
-                key={index}
-                className="p-4 xs:p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl cursor-pointer overflow-hidden relative group"
-                style={{
-                  backgroundColor: isHovered ? colors.bg.secondary : colors.bg.card,
-                  border: `1px solid ${isHovered ? colors.accent.primary + '40' : colors.accent.border}`,
-                  transition: 'all 0.3s ease',
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{
-                  scale: 1.03,
-                  y: -8,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.6 + index * 0.08, duration: 0.5 }}
-              >
-                {/* Gradient overlay on hover */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.accent.primary}08, ${colors.accent.secondary}08)`,
-                  }}
-                />
-
-                {/* Icon with glow effect */}
-                <div className="relative mb-3 xs:mb-4">
-                  <Icon
-                    className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl transition-all duration-300"
-                    style={{
-                      color: isHovered ? colors.accent.primary : colors.accent.primary + 'CC',
-                      filter: isHovered ? `drop-shadow(0 0 10px ${colors.accent.primary})` : 'none',
-                    }}
-                  />
-                </div>
-
-                {/* Status Badge */}
-                <div
-                  className="inline-block px-3 py-1.5 rounded-full text-xs xs:text-sm font-semibold mb-3 xs:mb-4 relative z-10"
-                  style={{
-                    backgroundColor: colors.accent.primary + '20',
-                    color: colors.accent.primary,
-                  }}
-                >
-                  {edu.status}
-                </div>
-
-                {/* Degree */}
-                <h5
-                  className="text-sm xs:text-base sm:text-lg md:text-xl font-bold mb-1.5 xs:mb-2 relative z-10 transition-colors duration-300 leading-tight"
-                  style={{
-                    color: isHovered ? colors.accent.primary : colors.text.primary,
-                  }}
-                >
-                  {edu.degree}
-                </h5>
-
-                {/* Institution */}
-                <p
-                  className="text-xs xs:text-sm sm:text-base relative z-10 leading-relaxed transition-colors duration-300 mb-2 xs:mb-3"
-                  style={{
-                    color: colors.text.secondary,
-                  }}
-                >
-                  {edu.institution}
-                </p>
-
-                {/* Year */}
-                <p
-                  className="text-xs xs:text-sm sm:text-base font-medium relative z-10 transition-colors duration-300"
-                  style={{
-                    color: colors.text.secondary,
-                  }}
-                >
-                  {edu.year}
-                </p>
-
-                {/* Bottom accent line */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-1 rounded-full"
-                  style={{
-                    background: `linear-gradient(90deg, ${colors.accent.primary}, ${colors.accent.secondary})`,
-                    width: isHovered ? '100%' : '0%',
-                    transition: 'width 0.3s ease',
-                  }}
-                />
-              </motion.div>
-            );
-          })}
+        {/* Navigation Dots (Mobile) */}
+        <div className="flex sm:hidden justify-center gap-2 mt-8">
+          {educationData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index
+                  ? "w-8 bg-blue-500"
+                  : theme
+                  ? "bg-gray-700"
+                  : "bg-gray-300"
+              }`}
+            />
+          ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
