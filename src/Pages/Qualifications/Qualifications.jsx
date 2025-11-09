@@ -1,9 +1,10 @@
 import React from 'react';
+import Skills from './Skills';
 
 const Qualifications = () => {
     return (
         <div>
-            qualifications
+            <Skills/>
         </div>
     );
 };
