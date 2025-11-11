@@ -75,27 +75,6 @@ const About = () => {
                 Although I’m at the beginning of my professional journey, I’m always learning, building, and exploring new technologies to grow as a developer and deliver meaningful digital experiences.
               </motion.p>
             </div>
-
-            {/* Read More Button */}
-            <motion.a
-              href="#about-details"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              whileHover={{ x: 5 }}
-              className={`inline-flex items-center gap-2 sm:gap-3 px-4 xs:px-5 sm:px-6 md:px-7 py-2 xs:py-2.5 sm:py-3 border-2 border-blue-500 text-blue-500 font-medium transition-all duration-300 hover:bg-blue-500 hover:text-white text-xs xs:text-sm sm:text-base group`}
-            >
-              <span>Read more</span>
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </motion.a>
           </motion.div>
 
           {/* Right Side - Image */}

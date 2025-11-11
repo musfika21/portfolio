@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import heroImage from "../../assets/hero.png";
 import DottedBox from "../../components/Shared/DottedBox";
 import useAuth from "../../Hooks/useAuth";
@@ -6,7 +7,7 @@ const Hero = () => {
 
   const { theme } = useAuth()
   return (
-    <div className={`w-full mx-auto ${ theme ? "bg-black text-white" : "bg-white text-black"} pt-28 md:pt-38 md:px-16 xl:px-40 relative overflow-hidden min-h-screen flex items-center`}>
+    <div className={`w-full mx-auto ${theme ? "bg-black text-white" : "bg-white text-black"} pt-28 md:pt-38 md:px-16 xl:px-40 relative overflow-hidden min-h-screen flex items-center`}>
       {/* Decorative dots using DottedBox component */}
       <DottedBox position="top-right" className="pt-15" rows={4} cols={5} />
       <DottedBox position="bottom-right" rows={4} cols={5} />
@@ -23,9 +24,11 @@ const Hero = () => {
             She crafts responsive websites where technologies meet creativity
           </p>
 
-          <button className={`border-2 border-blue-500 text-blue-500 hover:text-white ${theme ? "hover:bg-blue-500 " : "bg-blue-100  hover:bg-blue-500"} px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base transition-colors duration-300 cursor-pointer`}>
-            Contact me!!
-          </button>
+          <Link to='/contact'>
+            <button className={`border-2 border-blue-500 text-blue-500 hover:text-white ${theme ? "hover:bg-blue-500 " : "bg-blue-100  hover:bg-blue-500"} px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base transition-colors duration-300 cursor-pointer`}>
+              Contact me!!
+            </button>
+          </Link>
         </div>
 
         {/* Right Content - Image Section */}
